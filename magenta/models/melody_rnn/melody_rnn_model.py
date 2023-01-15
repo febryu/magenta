@@ -176,6 +176,23 @@ default_configs = {
                 dropout_keep_prob=0.5,
                 clip_norm=5,
                 learning_rate=0.001)),
+    'midi500_8bars_rnn':
+        MelodyRnnConfig(
+            generator_pb2.GeneratorDetails(   
+                id='midi500_8bars_rnn',
+                description='midi500_8bars_rnn RNN with lookback encoding and attention.'),
+            note_seq.KeyMelodyEncoderDecoder(
+                min_note=0, max_note=128),
+            contrib_training.HParams(
+                batch_size=128,
+                rnn_layer_sizes=[128, 128],
+                dropout_keep_prob=0.6,
+                attn_length=40,
+                clip_norm=3
+                learning_rate=0.001),
+            min_note=0,
+            max_note=128,
+            transpose_to_key=None),             
     'attention_rnn':
         MelodyRnnConfig(
             generator_pb2.GeneratorDetails(
